@@ -59,14 +59,24 @@ public class ProductController {
     }
 
     @DeleteMapping(path = "/{productName}")
-    public void deleteProductByName(@PathVariable("productName") String productName) {
+    public ResponseEntity deleteProductByName(@PathVariable("productName") String productName) {
         if (!authService.isAuthenticated()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        if (!productService.productHasUnfinishedOrders()) {
+        if (!productService.productHasRunningOrders(productName)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         this.productService.deleteProductByName(productName);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/{productName}/stock/{stockIncrease}")
+    public ResponseEntity updateProductStockByName(@PathVariable("productName") String productName, @PathVariable("stockInrease") Integer stockIncrease) {
+        if (!authService.isAuthenticated()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        this.productService.updateProductStockByName(productName, stockIncrease);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

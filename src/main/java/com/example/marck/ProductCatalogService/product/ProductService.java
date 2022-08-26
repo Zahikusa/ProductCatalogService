@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class ProductService {
+    // TODO: Debug why DB initialization is not working
 
     private final JdbcTemplate jtm;
 
@@ -42,9 +43,10 @@ public class ProductService {
         return 2;
     }
 
-    public Integer updateProductStockByName(String productName) {
-        // TODO implement this method
-        return 2;
+    public void updateProductStockByName(String productName, Integer stockIncrease) {
+        if (stockIncrease < 1) return; // TODO: Improve error handling here, throw a specific error
+        String sql = "UPDATE products SET stock = ? WHERE name = ?";
+        jtm.update(sql, stockIncrease, productName);
     }
 
     public boolean productHasRunningOrders(String productName) {
