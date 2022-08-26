@@ -38,18 +38,19 @@ public class ProductService {
         jtm.execute(sql);
     }
 
-    public Integer getProductStockByName(String productName) {
-        // TODO Implement this method
-        return 2;
-    }
-
     public void updateProductStockByName(String productName, Integer stockIncrease) {
         if (stockIncrease < 1) return; // TODO: Improve error handling here, throw a specific error
         String sql = "UPDATE products SET stock = ? WHERE name = ?";
         jtm.update(sql, stockIncrease, productName);
     }
 
+    public Integer getProductStockByName(String productName) {
+        // TODO Implement this method, needed when deleting product, to make sure no order for that product is still running
+        return 2;
+    }
+
     public boolean productHasRunningOrders(String productName) {
         // TODO implement this method by accessing API of OrderingService
+        return false;
     }
 }

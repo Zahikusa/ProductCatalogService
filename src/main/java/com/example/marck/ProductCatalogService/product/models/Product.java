@@ -1,5 +1,7 @@
 package com.example.marck.ProductCatalogService.product.models;
 
+// TODO: Check if this needs an ID, because you may want to change the name of a product?
+// TODO: Type should probably be an ENUM, but so far no logic related to the type is requested
 public class Product {
     private String name;
     private String type;

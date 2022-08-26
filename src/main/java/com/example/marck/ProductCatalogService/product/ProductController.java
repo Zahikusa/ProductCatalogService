@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/product")
 public class ProductController {
-    // TODO: Add error handling
+    // TODO: Add error handling, e.g. with a central ErrorHandlerIntercepter
 
     private final ProductService productService;
     private final AuthService authService;
