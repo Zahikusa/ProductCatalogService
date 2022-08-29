@@ -71,7 +71,7 @@ public class ProductController {
     }
 
     @PutMapping(path = "/{productName}/stock/{stockIncrease}")
-    public ResponseEntity updateProductStockByName(@PathVariable("productName") String productName, @PathVariable("stockInrease") Integer stockIncrease) {
+    public ResponseEntity updateProductStockByName(@PathVariable("productName") String productName, @PathVariable("stockIncrease") Integer stockIncrease) {
         if (!authService.isAuthenticated()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
